@@ -812,5 +812,80 @@ arrowGreet(); // window.name (global this)
 JavaScript’s dynamic `this` binding allows flexibility but can be confusing. Arrow functions and explicit binding provide control over `this`.
 
 **Visual Idea**: A diagram showing different call scenarios (method, function, arrow) and their `this` values.
+25.### **What is AJAX in JavaScript?**  
+**AJAX** (Asynchronous JavaScript and XML) is a technique that allows web pages to communicate with a server **asynchronously** (in the background) without reloading the page. It enables dynamic content updates, improving user experience.  
+
+---
+
+## **How AJAX Works**  
+1. **User Interaction**: An event (e.g., button click) triggers an AJAX request.  
+2. **HTTP Request**: JavaScript sends a request to the server (e.g., `fetch`, `XMLHttpRequest`).  
+3. **Server Processing**: The server processes the request (e.g., fetches data from a database).  
+4. **Response**: The server sends data back (usually **JSON** or **XML**).  
+5. **DOM Update**: JavaScript dynamically updates the webpage with the new data.  
+
+![AJAX Flow](https://www.freecodecamp.org/news/content/images/2022/01/ajax.png)  
+*(Visual: AJAX cycle between browser and server.)*  
+
+---
+
+## **Key Features of AJAX**  
+✔ **Asynchronous**: Doesn’t block the main thread (no page reload).  
+✔ **Dynamic Updates**: Changes parts of the page without refreshing.  
+✔ **JSON/XML Data**: Lightweight data formats for fast transfer.  
+✔ **Cross-Origin Requests**: Can fetch data from external APIs (with CORS).  
+
+---
+
+## **Example: AJAX with `fetch` (Modern Way)**  
+```javascript
+// Fetch data from an API
+fetch('https://api.example.com/data')
+  .then(response => response.json()) // Parse JSON
+  .then(data => {
+    console.log(data); // Use the data
+    document.getElementById('result').innerHTML = data.value;
+  })
+  .catch(error => console.error('Error:', error));
+```
+
+---
+
+## **Example: AJAX with `XMLHttpRequest` (Legacy Way)**  
+```javascript
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://api.example.com/data', true); // Async=true
+xhr.onload = function() {
+  if (xhr.status === 200) {
+    const data = JSON.parse(xhr.responseText);
+    console.log(data);
+  }
+};
+xhr.send();
+```
+
+---
+
+## **Why Use AJAX?**  
+ **Faster UX**: No full page reloads (e.g., auto-suggestions in search).  
+ **Single-Page Apps (SPAs)**: Used in React, Angular, Vue.  
+ **API Integration**: Fetch data from external services (e.g., weather, stock prices).  
+
+---
+
+## **Common AJAX Use Cases**  
+1. **Form Submissions** (without page refresh).  
+2. **Infinite Scroll** (load more content dynamically).  
+3. **Live Search** (e.g., Google’s search suggestions).  
+4. **Chat Applications** (real-time message updates).  
+
+---
+
+### **Key Takeaways**  
+- AJAX = **Asynchronous** JS + **XML/JSON** (but mostly JSON today).  
+- Uses `fetch` (modern) or `XMLHttpRequest` (older).  
+- Enables **dynamic, seamless** web interactions.  
+
+Would you like a deeper dive into error handling or real-time AJAX (e.g., WebSockets)? 🚀
 
 ---
